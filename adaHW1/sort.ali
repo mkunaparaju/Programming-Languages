@@ -1,0 +1,102 @@
+V "GNAT Lib v4.4"
+P SS ZX
+R nnnnnnnnnnnnnnnnnnnnnnvnvnnnnnnnnnvnnnnnnvnnnnvnvnnnnnnvnnnnnnnnnnnnnnv1+nnnnnn
+
+U sort%b		sort.adb		a6c68f8d NE OO PK IL
+W ada%s			ada.ads			ada.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.real_time%s	a-reatim.adb		a-reatim.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W system%s		system.ads		system.ali
+W system.parameters%s	s-parame.adb		s-parame.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.task_info%s	s-tasinf.adb		s-tasinf.ali
+W system.tasking%s	s-taskin.adb		s-taskin.ali
+W system.tasking.stages%s  s-tassta.adb		s-tassta.ali
+W text_io%s		text_io.ads		text_io.ali
+
+U sort%s		sort.ads		3f9410f7 EE NE OO PK IL
+
+D ada.ads		20090114110545 9c7dd3ea
+D a-except.ads		20090414134449 b54b55de
+D a-finali.ads		20090414134820 9eaacebd
+D a-filico.ads		20090414134951 9299732a
+D a-inteio.ads		20090114110546 03bc737c
+D a-ioexce.ads		20090114110546 be0900a0
+D a-reatim.ads		20090414134524 7c462ab4
+D a-stream.ads		20090414134419 34aca5be
+D a-tags.ads		20090414134730 bfa07446
+D a-textio.ads		20090414134822 fe8af46e
+D a-tiinio.ads		20090414134653 949a7272
+D a-unccon.ads		20090114110545 51e09df2
+D interfac.ads		20090414134625 a69cad5c
+D i-c.ads		20090114110546 bc3ef662
+D i-cstrea.ads		20090414134744 e1e064a9
+D sort.ads		20160229023652 3f9410f7
+D sort.adb		20160229024245 e6d924f9
+D system.ads		20090414134649 df55302f
+D s-atacco.ads		20090414134625 60789a20
+D s-crtl.ads		20090414134633 997234a1
+D s-exctab.ads		20090414134921 5c1c61ae
+D s-ficobl.ads		20090414134918 8bb681e5
+D s-finimp.ads		20090414135057 9449f4cb
+D s-finroo.ads		20090414134701 1408f9d1
+D s-linux.ads		20090414134416 ad070dbe
+D s-osinte.ads		20090114110545 b04c0edf
+D s-parame.ads		20090414134647 f32e56e9
+D s-secsta.ads		20090414134519 7bae3621
+D s-soflin.ads		20090414134425 0c6fd39d
+D s-stache.ads		20090414134825 257b3be8
+D s-stausa.ads		20090414135032 6ab7dd35
+D s-stalib.ads		20090414135007 52b793d5
+D s-stoele.ads		20090414134841 ed966df3
+D s-stoele.adb		20090414134835 e9998c78
+D s-stratt.ads		20090414134859 fef7c1da
+D s-tasinf.ads		20090414134724 268f0cd4
+D s-taspri.ads		20090114110546 5459bcd0
+D s-taprop.ads		20090414134856 25a7965c
+D s-taskin.ads		20090414134931 376ff2dd
+D s-tassta.ads		20090414134752 71d2b71d
+D s-traent.ads		20090414134453 bd5f2753
+D s-unstyp.ads		20090414134601 c0f9fae5
+D s-wchcon.ads		20090414134706 ab028799
+D text_io.ads		20090114110545 7c37c8ff
+X 1 ada.ads
+16K9*Ada 19e8 17|2r6 3r5
+X 5 a-inteio.ads
+18K13*Integer_Text_IO[11|45] 17|2w10 3r9
+X 10 a-textio.ads
+242U14*Put 17|36r17
+X 16 sort.ads
+1K9*sort 4l5 4e9 17|6b14 109l5 109t9
+2A14*subArray(integer)<integer> 3r45 17|8r45 14r42
+3U19*quickSort 3=29 3=55 3=67 17|8b19 21r25 32r25 108l13 108t22
+3a29 numbers{2A14} 17|8b29 44r28 44r50 45r38 48r38 54r28 54r39 55r36 55r57
+. 56r46 59r46 63r36 63r57 64r46 67r46 75r31 79r31 86r41 87m33 87r47 88m33
+. 95r28 100m25
+3i55 startIndex{integer} 17|8b55 103r20 106m31
+3i67 endIndex{integer} 17|8b67 103r33 106m43
+X 17 sort.adb
+9i9 m{integer} 45m33 48m33 56m41 59m41 64m41 67m41 75r44 79r44 95r41
+10i9 temp{integer} 86m33 88r47
+11i9 middleIndex{integer} 46m33 49m33 52m25 54r47 55r44 56r54 57m41 57r56
+. 60m41 63r44 65m41 67r54 68m41 68r56 96m33 100m45
+12i9 i{integer} 41m25 52r41 54r36 63r65 73r23 75r39 77m33 77r38 84r28 87r55
+. 88r41
+13i9 j{integer} 42m25 52r43 55r65 59r54 60r56 64r54 65r56 73r27 79r39 81m33
+. 81r38 84r30 86r49 87r41
+14U19 sorting 14b19 14=27 14=52 14=64 14=77 37l13 37t20 100r17
+14a27 numbers{16|2A14} 21m35 32m35
+14i52 startIndex{integer} 21m44
+14i64 middleIndex{integer} 21m56 26r28 29r45 31r37
+14i77 endIndex{integer} 26r42 27r45 32m54
+16t22 sortFirst 19b27 22l21 22t30
+17t22 sortSecond 24b27 33l21 33t31
+18i17 newIndex{integer} 27m33 29m33 31m25 32m44
+39U19 split 39b19 39=25 39=37 101l13 101t18 106r25
+39i25 startIndex{integer} 41r29 43r29 44r36 45r46 46r48 93r26 100m34
+39i37 endIndex{integer} 42r30 43r20 44r58 48r46 49r48 93r38 100m58
+93i21 n{integer} 95r36 96r48
+X 44 text_io.ads
+24K9*Text_IO=24:29 17|1w6 4r5
+

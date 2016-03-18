@@ -1,0 +1,102 @@
+V "GNAT Lib v4.4"
+M P W=b
+P SS ZX
+R nnnnnnnnnnnnnnnvnnvnnnvnvvnnvnnnnnnnnnnnnvnnnnvnvnnnnnnvnnnnnnnnnnnnv3nv1+nnnnnn
+
+U main%b		main.adb		a89bd3d4 NE OO SU IL
+W ada%s			ada.ads			ada.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.real_time%s	a-reatim.adb		a-reatim.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W sort%s		sort.adb		sort.ali
+W system%s		system.ads		system.ali
+W system.parameters%s	s-parame.adb		s-parame.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.task_info%s	s-tasinf.adb		s-tasinf.ali
+W system.tasking%s	s-taskin.adb		s-taskin.ali
+W system.tasking.rendezvous%s  s-tasren.adb	s-tasren.ali
+W system.tasking.stages%s  s-tassta.adb		s-tassta.ali
+W text_io%s		text_io.ads		text_io.ali
+
+D ada.ads		20090114110545 9c7dd3ea
+D a-except.ads		20090414134449 b54b55de
+D a-finali.ads		20090414134820 9eaacebd
+D a-filico.ads		20090414134951 9299732a
+D a-inteio.ads		20090114110546 03bc737c
+D a-ioexce.ads		20090114110546 be0900a0
+D a-reatim.ads		20090414134524 7c462ab4
+D a-stream.ads		20090414134419 34aca5be
+D a-tags.ads		20090414134730 bfa07446
+D a-textio.ads		20090414134822 fe8af46e
+D a-tiinio.ads		20090414134653 949a7272
+D a-unccon.ads		20090114110545 51e09df2
+D interfac.ads		20090414134625 a69cad5c
+D i-c.ads		20090114110546 bc3ef662
+D i-cstrea.ads		20090414134744 e1e064a9
+D main.adb		20160229023703 e88478a0
+D sort.ads		20160229023652 3f9410f7
+D system.ads		20090414134649 df55302f
+D s-atacco.ads		20090414134625 60789a20
+D s-crtl.ads		20090414134633 997234a1
+D s-exctab.ads		20090414134921 5c1c61ae
+D s-ficobl.ads		20090414134918 8bb681e5
+D s-finimp.ads		20090414135057 9449f4cb
+D s-finroo.ads		20090414134701 1408f9d1
+D s-linux.ads		20090414134416 ad070dbe
+D s-osinte.ads		20090114110545 b04c0edf
+D s-parame.ads		20090414134647 f32e56e9
+D s-secsta.ads		20090414134519 7bae3621
+D s-soflin.ads		20090414134425 0c6fd39d
+D s-stache.ads		20090414134825 257b3be8
+D s-stausa.ads		20090414135032 6ab7dd35
+D s-stalib.ads		20090414135007 52b793d5
+D s-stoele.ads		20090414134841 ed966df3
+D s-stoele.adb		20090414134835 e9998c78
+D s-stratt.ads		20090414134859 fef7c1da
+D s-tasinf.ads		20090414134724 268f0cd4
+D s-taspri.ads		20090114110546 5459bcd0
+D s-taprop.ads		20090414134856 25a7965c
+D s-taskin.ads		20090414134931 376ff2dd
+D s-taprob.ads		20090414134945 5e00115c
+D s-tpoben.ads		20090414134747 37be425d
+D s-tasren.ads		20090414134815 5bda31d2
+D s-tassta.ads		20090414134752 71d2b71d
+D s-traent.ads		20090414134453 bd5f2753
+D s-unstyp.ads		20090414134601 c0f9fae5
+D s-wchcon.ads		20090414134706 ab028799
+D text_io.ads		20090114110545 7c37c8ff
+X 1 ada.ads
+16K9*Ada 19e8 16|2r6 3r5 85r25
+X 5 a-inteio.ads
+18K13*Integer_Text_IO[11|45] 16|2w10 3r9 85r29
+X 10 a-textio.ads
+166U14*New_Line 16|30r25 39r25 41r25 50r25
+242U14*Put 16|29r25 40r25 51r25
+X 11 a-tiinio.ads
+55U14*Get 16|85r45[5|18]
+65U14*Put 16|33r33[5|18] 44r33[5|18] 52r25[5|18]
+X 16 main.adb
+8U11*main 8b11 88l5 88t9
+10a9 num{17|2A14} 31r37 33r37 42r37 44r37 64m35 73r37 75r44 85m49
+11i9 sum{integer} 52r29 75m33 75r40
+12t14 printer 26b19 55l13 55t20 66r25 78r17 87r17
+13Y23 print 28b24 36l21 36t26 87r25
+14Y23 printSort 38b24 46l21 46t30 66r33
+15Y23 printSum 48b24 53l21 53t29 78r25
+18t14 sorting 35r25 57b19 68l13 68t20
+19Y23 sort 35r33 61b24 65l21 65t25
+22t14 adder 67r25 70b19 79l13 79t18
+23Y23 startAdd 67r31 72b24 77l21 77t29
+31i29 j{integer} 33r41
+42i29 j{integer} 44r41
+58i9 startIndex{integer} 62m25 64m39
+59i9 endIndex{integer} 63m25 64m50
+73i29 i{integer} 75r48
+83i21 i{integer} 85r53
+X 17 sort.ads
+1K9*sort 16|5w6 6r5 17|4e9
+2A14*subArray(integer)<integer> 16|10r13
+3U19*quickSort 16|64r25
+X 47 text_io.ads
+24K9*Text_IO=24:29 16|1w6 4r5
+
