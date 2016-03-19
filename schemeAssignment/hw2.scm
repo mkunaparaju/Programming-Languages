@@ -28,3 +28,9 @@
         (else (append (all-reverse (cdr L)) (list (car L))))))
 
 ;;(myequal L1 L2) returns whether both the lists(L1, L2) are the same
+(define (myequal? l1 l2)
+  (cond ((and (null? l1) (null? l2)) #t)
+        ((or (null? l1) (null? l2)) #f)
+        ((not (and (list? l1) (list? l2))) (eq? l1 l2))
+        (else (and (myequal? (car l1) (car l2)) (myequal? (cdr l1) (cdr l2))))))
+  
