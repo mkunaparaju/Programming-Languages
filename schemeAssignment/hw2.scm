@@ -28,9 +28,51 @@
         (else (append (all-reverse (cdr L)) (list (car L))))))
 
 ;;(myequal L1 L2) returns whether both the lists(L1, L2) are the same
+;; base case: when both list empty, return true. when only either is empty return false
+;;Hypothesis: 
 (define (myequal? l1 l2)
   (cond ((and (null? l1) (null? l2)) #t)
         ((or (null? l1) (null? l2)) #f)
         ((not (and (list? l1) (list? l2))) (eq? l1 l2))
         (else (and (myequal? (car l1) (car l2)) (myequal? (cdr l1) (cdr l2))))))
-  
+
+
+;; (compare-fns f1 fn2 domain) returns whether both the functions will return the same value or not for a set of values.
+(define (compare-fns fn1 fn2 domain)
+  (cond ((null? domain) #t)
+        ((not (myequal? (fn1 (car domain)) (fn2 (car domain)))) #f)
+        (else (compare-fns fn1 fn2 (cdr domain)))))
+
+;;(same-values fn1 fn2 domain) returns a list of all elements x of domain such that (fn1 x) (fn2 x) return the same values
+;;(define finalList (list '()))
+;;(define (same-values fn1 fn2 domain)
+  ;;(cond ((null? domain) #t)
+    ;;    (myequal? (fn1 (car domain)) (fn2 (car domain))) ((cons finalList (car domain) ) (same-values fn1 fn2 (cdr domain)))
+      ;;   (else (same-values fn1 fn2 (cdr domain)))))
+
+
+
+
+;;(partition x L) splits the list into 2 lists one which has nums less equal to x and greater than x
+;;(define less (list '()))
+;;(define more (list '())
+;;(define (partition x L)
+  ;;(cond ((null? L) L)
+    ;;    ((null? (cdr L))
+      ;;   (cond ((<= (car L) x) (cons (car L) less))
+        ;;      (else (cons (car L) more))))
+  ;;     ((<= (car L) x) (cons (car L) less) (partition x (cdr L)))
+;;       (else (cons (car L) more) (partition x (cdr L)))))
+
+
+(define partition (lambda (x l)
+                    (pHelper l x '() '())))
+
+(define pHelper (lambda (all chk l m)
+                  (cond ((null? all) (cons l (cons m '())))
+                        (else
+                        (let ((y (car all)))
+                          (if (<= y chk) 
+                              (pHelper (cdr all) chk (cons y l) m)
+                              (pHelper (cdr all) chk l (cons y m))))))))
+
