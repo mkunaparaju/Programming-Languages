@@ -29,7 +29,8 @@
 
 ;;(myequal L1 L2) returns whether both the lists(L1, L2) are the same
 ;; base case: when both list empty, return true. when only either is empty return false
-;;Hypothesis: 
+;;hypothesis: myequal? works for the seperated lists of l1 and l2 into their car and cdr
+;; Recursive step: calling my equal on the car and cdr of the lists
 (define (myequal? l1 l2)
   (cond ((and (null? l1) (null? l2)) #t)
         ((or (null? l1) (null? l2)) #f)
@@ -38,41 +39,62 @@
 
 
 ;; (compare-fns f1 fn2 domain) returns whether both the functions will return the same value or not for a set of values.
+;;Base case: when the domain is empty, return true
+;;hypothesis:: calling the function on the (cdr domain) will return whether there are any non-matching values
+;;recursive step: the compare-fns will be called as long as there is no mismatch between the results of the both the functions on the same domain values
 (define (compare-fns fn1 fn2 domain)
   (cond ((null? domain) #t)
         ((not (myequal? (fn1 (car domain)) (fn2 (car domain)))) #f)
         (else (compare-fns fn1 fn2 (cdr domain)))))
 
 ;;(same-values fn1 fn2 domain) returns a list of all elements x of domain such that (fn1 x) (fn2 x) return the same values
-;;(define finalList (list '()))
-;;(define (same-values fn1 fn2 domain)
-  ;;(cond ((null? domain) #t)
-    ;;    (myequal? (fn1 (car domain)) (fn2 (car domain))) ((cons finalList (car domain) ) (same-values fn1 fn2 (cdr domain)))
-      ;;   (else (same-values fn1 fn2 (cdr domain)))))
+;;base case: if the domain is nnull, we will return that same domain as the output.
+;; hypothesis: same-values function will return a list of values for the (cdr domain)
+;;recursive step: if the (car domain) is equal add to the listof value and continue with performing same-values on the (cdr domain)
+;; else jut continue with same-values on the (cdr-domain)
+(define (same-values fn1 fn2 domain)
+  (cond ((null? domain) domain)
+        ((myequal? (fn1 (car domain)) (fn2 (car domain))) (cons (car domain) (same-values fn1 fn2 (cdr domain))))
+        (else (same-values fn1 fn2 (cdr domain)))))
 
 
+;;(partition x L) calls an auxillary function which which splits the list into 2 lists, one which contains values less than equal to pivot and one which contains values more than the pivot
+;;base case: when the list is null, it returns 2 null lists
+;;;hypothesis: partitioning on the (cdr list) will split that list into 2 required lists
+;; recursive step : partitioning till we reach the end of the list and apending the values to the split lists
+(define (partition x ls)
+  (partition-aux ls x '() '()))
+
+(define (partition-aux ls pivot smaller larger)
+  (cond
+    ((null? ls) (list smaller larger))
+    ((<= (car ls) pivot)
+     (partition-aux (cdr ls) pivot (append smaller (list (car ls))) larger))
+    (else (partition-aux (cdr ls) pivot smaller (append larger (list (car ls)) )))))
 
 
-;;(partition x L) splits the list into 2 lists one which has nums less equal to x and greater than x
-;;(define less (list '()))
-;;(define more (list '())
-;;(define (partition x L)
-  ;;(cond ((null? L) L)
-    ;;    ((null? (cdr L))
-      ;;   (cond ((<= (car L) x) (cons (car L) less))
-        ;;      (else (cons (car L) more))))
-  ;;     ((<= (car L) x) (cons (car L) less) (partition x (cdr L)))
-;;       (else (cons (car L) more) (partition x (cdr L)))))
+;;(define quicksort (lambda (l)
+    ;;                (cond ((null? l) l)
+                          
+      ;;               (else (append (quicksort (car (partition (car l) (cdr l)))) (quicksort (cdr (partition (car l) (cdr l)))))))))
+(define sort (lambda (l)
+                    (cond ((null? (cdr l)) l)
+                          (else
+                          (let ((lx (partition (car l) (cdr l))))
+                             (append (sort (car lx)) (cons (car l)(sort (cdr lx))) ))))))
 
 
-(define partition (lambda (x l)
-                    (pHelper l x '() '())))
+;;(apply-to-list f) : returns a function that takes a list as a paremeter and applies the given function to it.
+(define (apply-to-list f)
+  (lambda (l) (map f l)))
 
-(define pHelper (lambda (all chk l m)
-                  (cond ((null? all) (cons l (cons m '())))
-                        (else
-                        (let ((y (car all)))
-                          (if (<= y chk) 
-                              (pHelper (cdr all) chk (cons y l) m)
-                              (pHelper (cdr all) chk l (cons y m))))))))
+
+;; (new-apply-to-list f): similar to (apply-to-list f) without using a map function
+
+(define (new-apply-to-list f)
+  (lambda (l) (letrec ((ownmap (lambda (f x)
+                                 (cond ((null? x) '())
+                                       (else (cons (f (car l)) (ownmap f (cdr l))))))))
+                 ownmap f l)))
+
 
