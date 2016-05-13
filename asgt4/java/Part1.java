@@ -14,6 +14,11 @@ public class Part1 {
 		    s1.add(new A(i));
 		    s1.add(new A(i*2));
 		}
+		
+//		ASet<A> s1 = new MySet<A>();
+//		s1.add(new A(1));
+//		s1.add(new A(2));
+//		s1.add(new A(3));
 		System.out.println("s1 = "+ s1);
 		System.out.println("pow(s1) =" + powerSet(s1));
 
@@ -42,73 +47,98 @@ public class Part1 {
 	    public static void main(String[] args) {
 		test();
 	    }
-	    	
+	    
 //	    static <T extends LessOrEqual<T>> ASet<ASet<T>> powerSet(ASet<T> s) {
-//	      	ASet<ASet<T>> powerSet = new MySet<ASet<T>>();
+//	    
+//	    	ASet<ASet<T>> powerSet = new MySet<ASet<T>>();
 //	    	powerSet.add(new MySet<T>());
+////	    	powerSet.add(s);
+//	    	System.out.println(powerSet.empty());
+//	    	System.out.println(powerSet);
+//	    	Iterator<ASet<T>> pit = powerSet.iterator();	
 //	    	Iterator<T> it = s.iterator();
 //	    	
 //	    	while(it.hasNext())
 //	    	{
-//	    		T elem = it.next();
+//	    		T inElem = it.next();
 //	    		ASet<ASet<T>> newps = new MySet<ASet<T>>();
-//	    		Iterator<ASet<T>> pit = powerSet.iterator();
+//	    		System.out.println("poweset 1 "+ powerSet );
 //	    		while(pit.hasNext())
 //	    		{
-//	    			ASet<T> subset = pit.next(); 
-//	    			newps.add(subset);
-//	    			ASet<T> newsubset = subset;
-//	    			newsubset.add(elem);
-//	    			newps.add(newsubset);
+//	    			ASet<T> subset = pit.next();
+//	    			System.out.println("subset " + subset);
+//	    			ASet<T> newss = subset;
 //	    			
+//	    			newss.add(inElem);
+//	    			newps.add(newss);
+//	    			System.out.println(newps + "   new ps");
 //	    		}
-//	    		powerSet = newps;
 //	    		
-//	    	}	
-//	    	return powerSet; 
+//	    		powerSet.addAll(newps);
+//	    		
+//	    		System.out.println(powerSet + " powerrset");
+//	    		pit = powerSet.iterator();
+//	    	}	    	
+//	    	return powerSet;	 
+//	    }	
 //	    
-//	    }
-	    
 	    static <T extends LessOrEqual<T>> ASet<ASet<T>> powerSet(ASet<T> s) {
-	    
 	    	ASet<ASet<T>> powerSet = new MySet<ASet<T>>();
-//	    	powerSet.add(new MySet<T>());
-	    	powerSet.add(s);
-	    	//System.out.println(powerSet);
-	    	Iterator<ASet<T>> pit = powerSet.iterator();	
-	    	Iterator<T> it = s.iterator();
-	    	
-	    	while(it.hasNext())
+	    	powerSet.add(new MySet<T>());
+	    	Iterator<T> init = s.iterator();
+	    	while(init.hasNext())
 	    	{
-	    		T inElem = it.next();
-	    		ASet<ASet<T>> newps = new MySet<ASet<T>>();
 	    		
-	    		while(pit.hasNext())
+	    		T i = init.next();
+	    	//	System.out.println("init " + i);
+	    		ASet<ASet<T>> temp = new MySet<ASet<T>>();
+	    		
+	    		ASet<ASet<T>> newps = new MySet<ASet<T>>();
+	    		Iterator<ASet<T>> powerit = powerSet.iterator();
+	    		while(powerit.hasNext())
 	    		{
-	    			ASet<T> subset = pit.next();
-	    			ASet<T> newss = subset;
-	    			
-	    			newss.add(inElem);
+	    			ASet<T> newss = new MySet<T>();
+	    			ASet<T> powerss = powerit.next();
+	    			newss.addAll(powerss);	
+	    		//	System.out.println("newss" + newss);
 	    			newps.add(newss);
 	    		}
-	    		powerSet = newps; 		
-	    	}	    	
-	    	return powerSet;	 
-	    }	
-	    
-	   
+	    	//	System.out.println("newps " + newps);
+	    		
+	    		Iterator<ASet<T>> pit = newps.iterator();
+	    		
+	    		while(pit.hasNext()){
+	    			ASet<T> j = pit.next();
+	    			j.add(i);
+	    			temp.add(j);
+	    		//	System.out.println("temp " + temp); 
+	    			
+	    		}
+//	    		ASet<T> iset = new MySet<T>();
+//    			iset.add(i);
+//    			temp.add(iset);
+    		//	System.out.println("temp 2 " + temp);
+	    	//	powerSet.addAll(temp);
+	    		Iterator<ASet<T>> tempit = temp.iterator();
+	    		System.out.println();
+	    		while(tempit.hasNext())
+	    		{
+	    			powerSet.add(tempit.next());
+	    		}
+	    		
+	    	//	System.out.println("powerset "+ powerSet );
+	    	}
+	    	
+	    	
+	    	return powerSet;
+	    }	   
 }
-
-	    
-	    
-	    
-
 
 interface LessOrEqual<T> {
 
 	
 	boolean lessThan(T x);
-	boolean equalTo(T x);
+	boolean equalToA(T x);
 }
 
 interface ASet<T extends LessOrEqual<T>> extends LessOrEqual<ASet<T>>, Iterable<T>
@@ -123,6 +153,7 @@ interface ASet<T extends LessOrEqual<T>> extends LessOrEqual<ASet<T>>, Iterable<
 	ASet<T> difference(ASet<T> x);
 	boolean lessThan(ASet<T> s1);
 	boolean equalTo(ASet<T> s1);
+	void addAll(ASet<T> x);
 }
 
 class MySet<T extends LessOrEqual<T>> implements ASet<T>
@@ -137,15 +168,15 @@ class MySet<T extends LessOrEqual<T>> implements ASet<T>
 	public String toString()
 	{
 		String stmt = "";
-		if(!mylist.isEmpty())
-		{
+		//if(!mylist.isEmpty())
+		//{
 			stmt = stmt + "[";
 			for(int i =0; i< mylist.size(); i++)
 			{
 				 stmt = stmt + mylist.get(i) + " ";
 			}
 			stmt = stmt + "]";
-		}
+		//}
 		return stmt;
 	}
 //	@Override
@@ -196,7 +227,7 @@ class MySet<T extends LessOrEqual<T>> implements ASet<T>
 			return false;
 		}
             for(T e: mylist){
-                if(e.equalTo(x)){
+                if(e.equalToA(x)){
                     return true;
                 }
             }
@@ -211,7 +242,7 @@ class MySet<T extends LessOrEqual<T>> implements ASet<T>
 			while(mylistiter.hasNext()){
 				T a = mylistiter.next();
 				//System.out.println("s1 " + a);
-                if(!e.equalTo(a)){
+                if(!e.equals(a)){
                     return false;
                 }
                 else
@@ -250,7 +281,7 @@ class MySet<T extends LessOrEqual<T>> implements ASet<T>
         	Iterator<T> mylistiter = x.iterator();
             while(mylistiter.hasNext()){
             	T nextelem =  mylistiter.next();       
-                if(nextelem.equalTo(present)){
+                if(nextelem.equalToA(present)){
                     newset.add(nextelem);
                 }
             }
@@ -271,16 +302,36 @@ return newset;
 		}
 		return newset;
 	}
-	@Override
+	
 	public boolean lessThan(ASet<T> s1) {
 		if(this != s1)
 		return this.subset(s1);
 		else 
 			return false;
 	}
-	@Override
+	
 	public boolean equalTo(ASet<T> s1) {
 		return ((this.subset(s1)) && s1.subset(this));
+	}
+	@Override
+	public void addAll(ASet<T> x) {
+		Iterator<T> it = x.iterator();
+		while(it.hasNext())
+		{
+			T ele = it.next();
+		//	System.out.println("adding   " + ele);
+			this.add(ele);
+		}
+	}
+	@Override
+	public boolean equals(Object x) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean equalToA(ASet<T> x) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	
@@ -302,7 +353,7 @@ class A implements LessOrEqual<A>
 		return (this.x < newA.x);
 	}
 	@Override
-	public boolean equalTo(A obj) {
+	public boolean equalToA(A obj) {
 		A newA = (A)obj;		
 		return (this.x == newA.x);
 	}
@@ -336,7 +387,7 @@ class B extends A{
     }
 
   
-    public boolean equalTo(B elem) {
+    public boolean equalToA(B elem) {
         if(this.sum==(elem.x+elem.y)){
             return true;
         }
